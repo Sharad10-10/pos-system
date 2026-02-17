@@ -1,0 +1,71 @@
+'use client'
+import React, { useState } from 'react'
+
+const AddPizzaForm = () => {
+
+        const [formData, setFormData] = useState({
+        pizzaName: '',
+        imageUrl: '',
+        smallPrice:'',
+        mediumPrice: '',
+        largePrice: ''
+    })
+
+    const handleInput = (e)=> {
+        const {name, value} = e.target
+        setFormData({
+            ...formData,
+            [name] : value
+        }
+        )
+    }
+
+      const handleSubmit = async(e)=> {
+            e.preventDefault()
+    
+            const response = await fetch('http://localhost:3000/api/pizza', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+    
+            const data = await response.json()
+            console.log('Data is: ', data);
+            setFormData({
+            pizzaName: '',
+            imageUrl: '',
+            smallPrice:'',
+            mediumPrice: '',
+            largePrice: ''
+            })
+        }
+
+
+  return (
+    <div>
+        <div>
+                        <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
+                            <label htmlFor="">Name</label>
+                            <input onChange={handleInput} value={formData.pizzaName} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter pizza name' name='pizzaName' id='pizza'  />
+                            <label htmlFor="">Image</label>
+                            <input onChange={handleInput} value={formData.imageUrl} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter Image' name='imageUrl' id='image' />
+                            <label htmlFor="">Small</label>
+                            <input onChange={handleInput} value={formData.smallPrice} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter price' name='smallPrice' id='smallPrice' />
+                            <label htmlFor="">Medium</label>
+                            <input onChange={handleInput} value={formData.mediumPrice} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter price' name='mediumPrice' id='mediumPrice' />
+                            <label htmlFor="">Large</label>
+                            <input onChange={handleInput} value={formData.largePrice} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter price' name='largePrice' id='largePrice' />
+        
+                             <div>
+                                <button className='px-6 py-2 bg-[#EB675A] text-white rounded-lg cursor-pointer hover:scale-105 duration 500 transition-all'>Add New</button>
+                            </div>
+        
+                        </form>
+                    </div>
+    </div>
+  )
+}
+
+export default AddPizzaForm
