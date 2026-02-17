@@ -28,7 +28,7 @@ const Sales = () => {
    <div className='bg-[#F5F5F5] w-329 grid grid-cols-[35%_65%] ml-51 mt-18 pt-4'>
 
      <div className='shadow-2xl pl-4'>
-      <OrderSummary orderItems = {orderItems}/>
+      <OrderSummary orderItems = {orderItems} setOrderItems= {setOrderItems}/>
      </div>
      
      <div className='pl-6 shadow-2xl'>

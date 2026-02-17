@@ -16,7 +16,7 @@ const PizzaSection =({addItemToOrder}) => {
      fetchPizzaData()
    },[])
 
-   console.log(pizzaData);
+
    
 
   return (

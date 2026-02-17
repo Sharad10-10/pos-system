@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, timestamp, numeric} from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar, timestamp, numeric, text} from "drizzle-orm/pg-core";
 
 export const userSchema = pgTable('users', {
     id:serial('id').primaryKey(),
@@ -16,4 +16,14 @@ export const pizzaSchema = pgTable("pizza", {
   mediumPrice: varchar("price_medium", { precision: 10, scale: 2 }).notNull(),
   largePrice: varchar("price_large", { precision: 10, scale: 2 }).notNull(),
 });
+
+
+export const customerDataSchema = pgTable('customerdata', {
+  id: serial('id').primaryKey(),
+  customerName: varchar('customer_name'),
+  phoneNumber: varchar('phone_number'),
+  order: text('customer_order').array().notNull(),
+  totalPrice: varchar('total_price', {precision: 10, scale: 2}).notNull()
+
+})
 
