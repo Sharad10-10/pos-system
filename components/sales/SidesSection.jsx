@@ -1,43 +1,45 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const SidesSection = () => {
+const SidesSection = ({addItemToOrder}) => {
+
+  const [sidesData, setSidesData] = useState([]) 
+  const fetchSidesData = async ()=>{
+    try {
+        const response = await fetch('http://localhost:3000/api/sides')
+        const data = await response?.json()
+        setSidesData(data)
+        console.log(data);
+        
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+  useEffect(()=>{
+    fetchSidesData()
+  },[])
+
+
+
+
   return (
     <div className='pt-8 flex gap-12 flex-wrap h-screen'>
-          <div className='max-w-50'>
+         {sidesData?.data?.map((sidesData, index)=> {
+          return (
+               <div  key={index} className='max-w-50'>
                     <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/pepperoni.jpg' width={300} height={300} alt='pepperoni'></Image></div>
-                    <h1 className='text-xl font-medium pt-1'>Boneless wings</h1>
+                    <h1 className='text-xl font-medium pt-1'>{sidesData?.sidesName}</h1>
                     <div className='pt-4 flex flex-col gap-2'>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>8pcs: 8$</span>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>14pcs: 14$</span>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>22pcs: 22$</span>
+                        {sidesData?.smallPrice ? <span onClick={()=> addItemToOrder({name: sidesData?.sidesName, price: sidesData?.smallPrice, size: sidesData?.sidesName == 'Boneless Wings' || sidesData?.sidesName == 'Traditional Wings' ? 'Small (pcs)' : 'Small' })} className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Small{sidesData?.sidesName === 'Boneless wings' || sidesData?.sidesName === 'Traditional Wings' ? ' (8pcs)': ''}: {sidesData?.smallPrice}$</span> : ''}
+                        {sidesData?.regularPrice ? <span onClick={()=> addItemToOrder({name: sidesData?.sidesName, price: sidesData?.regularPrice, size: sidesData?.sidesName == 'Boneless Wings' || sidesData?.sidesName == 'Traditional Wings' ? 'Regular 14(pcs)' : 'Regular' })} className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Regular{sidesData?.sidesName === 'Boneless wings' || sidesData?.sidesName === 'Traditional Wings' ? ' (14pcs)': ''}: {sidesData?.regularPrice}$</span>: ''}
+                      {sidesData?.largePrice ?  <span onClick={()=> addItemToOrder({name: sidesData?.sidesName, price: sidesData?.largePrice, size: sidesData?.sidesName == 'Boneless Wings' || sidesData?.sidesName == 'Traditional Wings' ? 'Large 22(pcs)' : 'Large' })} className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Large{sidesData?.sidesName === 'Boneless wings' || sidesData?.sidesName === 'Traditional Wings' ? ' (22pcs)': ''}: {sidesData?.largePrice}$</span>: ''}
                     </div>
             </div>
-          <div className='max-w-50'>
-                    <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/pepperoni.jpg' width={300} height={300} alt='pepperoni'></Image></div>
-                    <h1 className='text-xl font-medium pt-1'>Bones wings</h1>
-                    <div className='pt-4 flex flex-col gap-2'>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>8pcs: 8$</span>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>14pcs: 14$</span>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>22pcs: 22$</span>
-                    </div>
-            </div>
-          <div className='max-w-50'>
-                    <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/pepperoni.jpg' width={300} height={300} alt='pepperoni'></Image></div>
-                    <h1 className='text-xl font-medium pt-1'>Breadsticks</h1>
-                    <div className='pt-4 flex flex-col gap-2'>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Small: 4$</span>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Large: 9$</span>
-                        {/* <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>22pcs: 22$</span> */}
-                    </div>
-            </div>
-          <div className='max-w-50'>
-                    <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/pepperoni.jpg' width={300} height={300} alt='pepperoni'></Image></div>
-                    <h1 className='text-xl font-medium pt-1'>Cinnabon</h1>
-                    <div className='pt-4 flex flex-col gap-2'>
-                        <span className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Regular: 5$</span>
-                    </div>
-            </div>
+    
+          )
+         })}
     </div>
   )
 }

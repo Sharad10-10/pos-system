@@ -1,0 +1,4 @@
+-- ALTER TABLE "customerdata" ALTER COLUMN "order_status" SET DEFAULT 'Pending';--> statement-breakpoint
+-- ALTER TABLE "customerdata" ALTER COLUMN "order_status" DROP NOT NULL;--> statement-breakpoint
+-- ALTER TABLE "customerdata" ALTER COLUMN "payment_status" SET DEFAULT 'Not Paid';--> statement-breakpoint
+-- ALTER TABLE "customerdata" ALTER COLUMN "payment_status" DROP NOT NULL;

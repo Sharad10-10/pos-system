@@ -1,18 +1,38 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Overlay from '../overlay/Overlay'
+import { Trash2 } from 'lucide-react'
 
 const OrderSummary = ({orderItems, setOrderItems}) => {
+
+         const [showOverlay, setShowOverlay] = useState(false)
+         const [orderNumber, setOrderNumber] = useState(null);
+
+            useEffect(()=> {
+               setOrderNumber(Math.floor(Math.random()*(200 - 100 )) + 100)
+            }, [])
+
+            console.log(orderNumber);
+
+
+        
+            const triggerOverlay = ()=> {
+                setShowOverlay(true)
+            }
+
 
         const subtotal = orderItems.reduce((sum, item) => sum + Number(item.price), 0);
         const tax = (Number(subtotal * 0.05));
         const total = Number(subtotal + tax);
 
+
+
       const totalOrder =  orderItems.map((orderItem, index)=> {
-        return (orderItem?.name)
+        return (orderItem?.size + ' ' + orderItem?.name)
        })
 
         const [formData, setFormData] = useState({
-            customerName: '',
+            customerName: 'Pickup',
             phoneNumber: '',
             order: '',
             totalPrice: ''
@@ -32,7 +52,7 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
             const finalCustomerData = {
                 ...formData,
                 order: totalOrder,
-                totalPrice: total.toFixed(2)
+                totalPrice: total.toFixed(2),
             }
 
            try {
@@ -49,7 +69,7 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
                 console.log(data);
 
                 setFormData({
-                    customerName: '',
+                    customerName: 'Pickup',
                     phoneNumber: '',
                     order: '',
                     totalPrice: ''
@@ -59,8 +79,21 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
 
            } catch (error) {
             console.log(error);
-           }
+           }  
         }
+
+         const removeOrderItem = (id) => {
+            setOrderItems(prev =>
+                prev.filter((item)=> {
+                    return (item.id !== id)
+                })
+            )
+        }
+
+
+
+   
+
    
 
   return (
@@ -85,14 +118,16 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
                            <div className='pt-2'>
                                 {orderItems.map((orderItem, index)=> {
                             return (
-                                <div key={index} className='flex justify-between pr-12'>
+                                <div key={index} className='flex justify-between '>
                                     <div className='flex gap-2 items-center pt-2'>
                                         <h1 className='text-[17px] font-medium'>{orderItem?.size}</h1>
                                         <h1 className='text-[17px] font-semibold'>{orderItem?.name}</h1>
                                      </div>
-                                    <div>
+                                    <div className='flex gap-2 items-center'>
                                         <h1 className='text-[17px] font-medium pt-2'> {orderItem?.price}$</h1>
+                                        <Trash2 onClick={() => removeOrderItem(orderItem.id)} className='pt-2 ml-4 cursor-pointer text-red-600 hover:scale-105 transition-all duration-500'/>
                                     </div>
+                                    
                             </div>
                             )
                            })}
@@ -104,15 +139,16 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
                 <div className='border-b-2 border-black/30 px-8 mt-8'/>
 
                 <div className='text-lg font-semibold flex flex-col gap-1 pt-2'>
-                    <h1>Subtotal: {subtotal}$</h1>
+                    <h1>Subtotal: {subtotal.toFixed(2)}$</h1>
                     <p>Hst (5%): {tax.toFixed(2)}$</p>
                     <h1>Total: {total.toFixed(2)}$</h1>
                 </div>
 
                 <div className='pt-4 pb-4'> 
-                    <button className='text-white bg-[#E74C3C] px-4 py-2 w-full rounded-lg cursor-pointer hover:scale-105 transition-all duration-500'>Complete Order</button>
+                    <button onClick={triggerOverlay} className='text-white bg-[#E74C3C] px-4 py-2 w-full rounded-lg cursor-pointer hover:scale-105 transition-all duration-500'>Complete Order</button>
                 </div>
             </form>
+            {showOverlay && <Overlay setShowOverlay={setShowOverlay} triggerOverlay= {triggerOverlay}/>}
         </div>
     </div>
   )

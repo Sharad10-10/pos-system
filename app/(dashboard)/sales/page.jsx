@@ -17,9 +17,12 @@ const Sales = () => {
     const addItemToOrder = (item)=> {
       setOrderItems(
        [ ...orderItems,
+        
        item]
       )
     }
+
+    console.log(orderItems);
 
 
  
@@ -39,7 +42,7 @@ const Sales = () => {
       </div>
 
       <div className='pb-12'>
-       {toggleMenu == 'Pizza' ? <PizzaSection addItemToOrder = {addItemToOrder}/>: '' || toggleMenu == 'Sides' ? <SidesSection /> : '' || toggleMenu == 'Drinks' ? <DrinksSection /> : ''}
+       {toggleMenu == 'Pizza' ? <PizzaSection addItemToOrder = {addItemToOrder}/>: '' || toggleMenu == 'Sides' ? <SidesSection addItemToOrder = {addItemToOrder} /> : '' || toggleMenu == 'Drinks' ? <DrinksSection addItemToOrder = {addItemToOrder} /> : ''}
       </div>
      </div>
 

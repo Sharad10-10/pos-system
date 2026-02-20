@@ -1,0 +1,2 @@
+-- ALTER TABLE "customerdata" DROP COLUMN "order_status";--> statement-breakpoint
+-- ALTER TABLE "customerdata" DROP COLUMN "payment_status";

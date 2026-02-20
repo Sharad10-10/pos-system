@@ -1,0 +1,2 @@
+-- ALTER TABLE "customerdata" ADD COLUMN "order_status" varchar NOT NULL;--> statement-breakpoint
+-- ALTER TABLE "customerdata" ADD COLUMN "payment_status" varchar NOT NULL;

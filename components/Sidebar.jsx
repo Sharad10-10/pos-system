@@ -9,10 +9,10 @@ import React from 'react'
 const Sidebar = () => {
     const pathName = usePathname().slice(1)
     const session = useSession()
-    const sideBarItems = [['Dashboard',<LayoutDashboardIcon />, './dashboard'], ['Sales', <DollarSignIcon />, './sales'], ['Reports', <ChartColumnDecreasing />, './reports'], ['Employees',<Users />, './employees'], ['Inventory', <Warehouse />, './inventory'], ['Menu Pizza', <PizzaIcon />, './menu'] ]
+    const sideBarItems = [['Dashboard',<LayoutDashboardIcon />, './dashboard'], ['Sales', <DollarSignIcon />, './sales'], ['Reports', <ChartColumnDecreasing />, './reports'], ['Employees',<Users />, './employees'], ['Inventory', <Warehouse />, './inventory'], ['Manage Menu', <PizzaIcon />, './menu'] ]
     const user = session?.data?.user?.name
     return (
-    <div className='bg-[#1A252F] fixed h-screen z-10'>
+    <div className='bg-[#1A252F] fixed h-screen z-10 w-[14%]'>
         <div className='bg-#1A252F p-6 text-center'>
             <h1 className='text-white text-xl font-medium'>🍕 Pizza POS</h1>
         </div>

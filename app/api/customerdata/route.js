@@ -26,8 +26,22 @@ export const POST = async(request, response)=> {
             error
         }, {status: 500})
     }
+}
 
 
-
- 
+export const GET = async()=> {
+    try {
+        const customerData = await db.select().from(customerDataSchema)
+        return NextResponse.json({
+            success: true,
+            message: 'Data retrieved successfully...',
+            customerData
+        }, {status: 200})
+    } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: 'Failed to get customer data...',
+            error
+        })
+    }
 }

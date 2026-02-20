@@ -4,7 +4,7 @@ const Dashboard = () => {
 
   
   return (
-      <div className='bg-[#F5F5F5 pl-60 pt-30'>
+      <div className='pl-60 pt-30'>
         <div className='inline-flex items-center gap-20 pl-6'>
           <div className='w-100 h-44 bg-white rounded-lg shadow-xl'>
             <div className='flex items-center justify-between px-8 pt-8'>
