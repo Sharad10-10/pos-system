@@ -1,5 +1,6 @@
 import { db } from "@/db/dbConfig"
 import { customerDataSchema } from "@/db/schema"
+import { asc } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export const POST = async(request, response)=> {
@@ -31,7 +32,7 @@ export const POST = async(request, response)=> {
 
 export const GET = async()=> {
     try {
-        const customerData = await db.select().from(customerDataSchema)
+        const customerData = await db.select().from(customerDataSchema).orderBy(asc(customerDataSchema.id))
         return NextResponse.json({
             success: true,
             message: 'Data retrieved successfully...',
