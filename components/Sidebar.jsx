@@ -35,7 +35,7 @@ const Sidebar = () => {
 
         <div className='text-white px-10 pt-6'>
             <h1 className='text-lg font-medium'>{user}</h1>
-            <p className='text-white/70 text-sm'>Admin</p>
+            <p className='text-white/70 text-sm'>admin</p>
         </div>
 
     </div>

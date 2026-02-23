@@ -2,12 +2,13 @@
 import React, { useState } from 'react'
 
 const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder, fetchCustomerData}) => {
+    console.log(selectedOrder, "selectedd");
     const [formData, setFormData] = useState({
         cash: '',
         credit: '',
         debit: '',
-        orderStatus: 'Not Ready',
-        paymentStatus: 'Not Paid'
+        orderStatus: selectedOrder?.orderStatus || 'Not Ready',
+        paymentStatus: selectedOrder?.paymentStatus || 'Not Paid'
     })
 
     
@@ -93,14 +94,14 @@ const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder, fetchCus
                         </div>
                         <div className='mt-4 flex gap-3'>
                             <p>Order Status:</p>
-                            <select onChange={handleInput} value={formData.orderStatus}  name="orderStatus" id="orderStatus" className='border-2 border-black/20 rounded-md'>
+                            <select onChange={handleInput} value={selectedOrder.orderStatus}  name="orderStatus" id="orderStatus" className='border-2 border-black/20 rounded-md'>
                                 <option value='Not Ready'>Not Ready</option>
                                 <option value='Ready'>Ready</option>
                             </select>
                         </div>
                         <div className='mt-4 flex gap-3'>
                             <p>Payment Status:</p>
-                            <select onChange={handleInput} value={formData.paymentStatus} name="paymentStatus" id="paymentStatus" className='border-2 border-black/20 rounded-md'>
+                            <select onChange={handleInput} value={selectedOrder.paymentStatus} name="paymentStatus" id="paymentStatus" className='border-2 border-black/20 rounded-md'>
                                 <option value='Not Paid'>Not Paid</option>
                                 <option value='Paid'>Paid</option>
                             </select>

@@ -4,7 +4,8 @@ export const userSchema = pgTable('users', {
     id:serial('id').primaryKey(),
     userName:varchar('userName').notNull().unique(),
     password:varchar('password',{length:255}).notNull(),
-    created_at:timestamp('createdAt').defaultNow(),  
+    created_at:timestamp('createdAt').defaultNow(),
+    userRole: varchar('user_role', {length: 255})
 })
 
 

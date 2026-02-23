@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
 
       <div>
         <Header />
-        <main className=''>
+        <main>
           {children}
         </main>
       </div>

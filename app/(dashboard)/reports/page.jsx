@@ -1,5 +1,6 @@
 'use client'
 import SalesReportsDialog from '@/components/overlay/SalesReportsDialog'
+import SearchBar from '@/components/SearchBar'
 import React, { useEffect, useState } from 'react'
 
 const Reports = () => {
@@ -31,10 +32,7 @@ const Reports = () => {
     <div className='pt-30 pl-58 pr-5 w-380'>
         <div className='w-full'>
 
-          <div className='flex items-center px-12 gap-x-50'>
-            <h1 className='text-xl font-medium'>Sales Report</h1>
-            <input className='outline-none border-2 border-black/40 rounded-lg p-1 w-80' type="text" name='searchBar' id='searchBar' placeholder='Search order' />
-          </div>
+          <SearchBar />
 
           <div>
             <div className='mt-4'>
@@ -75,7 +73,7 @@ const Reports = () => {
                           setDisplayDialog(true);           
                         }}
                           
-                          className='px-3 py-1 bg-[#E74C3C] cursor-pointer rounded-lg'>View</button></td>
+                          className='px-3 py-1 bg-[#E74C3C] cursor-pointer rounded-lg text-white hover:scale-105 transition-all duration-500'>View</button></td>
                       </tr>
                 </tbody>
                 )
