@@ -1,0 +1,1 @@
+ALTER TABLE "inventory" ADD COLUMN "product_type" varchar(255) NOT NULL;

@@ -120,6 +120,27 @@
       "when": 1771788827198,
       "tag": "0016_cheerful_lila_cheney",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1771887265054,
+      "tag": "0017_gifted_franklin_storm",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1771887368336,
+      "tag": "0018_natural_green_goblin",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1771889322246,
+      "tag": "0019_left_guardsmen",
+      "breakpoints": true
     }
   ]
 }

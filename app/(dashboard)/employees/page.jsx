@@ -23,7 +23,7 @@ const Employees = async() => {
         <div className='pl-60 pt-30'>
            <div className='flex flex-col gap-4'>
                 <h1 className='text-xl font-semibold'>Employees</h1>
-                <div className='flex gap-2'>
+                <div className='flex gap-3'>
                     <Button />
                     <RemoveButton />
                 </div>

@@ -1,0 +1,37 @@
+import { db } from "@/db/dbConfig";
+import { inventorySchema } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import { NextResponse } from "next/server";
+
+export const DELETE = async(request, {params})=>{
+
+  const {id} = await params;
+ 
+  try {
+
+    const existingProduct = await db.select().from(inventorySchema).where(eq(inventorySchema.productId, id))
+    if(existingProduct.length === 0) {
+        return NextResponse.json({
+            success: false,
+            message: 'No product found to delete!',
+        }, {status: 404})
+    }
+
+    const deleteProduct = await db.delete(inventorySchema).where(eq(inventorySchema.productId , id))
+    return NextResponse.json({
+        success: true,
+        message: 'Product deleted successfully...',
+        deletedProduct: deleteProduct[0]
+    }, {status: 201})
+
+
+
+  } catch (error) {
+    return NextResponse.json({
+        success: false,
+        message: 'Failed to delete product!',
+        error
+    }, {status: 501})
+  }
+
+}
