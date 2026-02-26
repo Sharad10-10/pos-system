@@ -22,20 +22,26 @@ export const POST =async (request, response)=> {
    } catch (error) {
         return NextResponse.json({
             success: false,
-            message: "Failed to add drinks",
+            message: "Failed to add drinks!",
             error
         },{status: 500}) 
    }
-
-
 }
 
 
 export const GET = async()=> {
-    const data = await db.select().from(drinksSchema)
-    return NextResponse.json({
-        success: true,
-        message: "Data retrieved successfully...",
-        data
-    })
+    try {
+        const data = await db.select().from(drinksSchema)
+        return NextResponse.json({
+            success: true,
+            message: "Data retrieved successfully...",
+            data
+        })
+    } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: 'Failed to get data!',
+            error
+        }, {status: 500})
+    }
 }

@@ -1,11 +1,8 @@
-import AddPizzaForm from '@/components/AddPizzaForm'
 import MenuTabs from '@/components/MenuTabs'
-import Image from 'next/image'
 import React from 'react'
 
 const MenuManagement = async() => {
 
- 
 
     const fetchPizzaData = async()=>{
         try {

@@ -18,7 +18,7 @@ export const PUT = async(request, {params})=> {
         if(customerData.length === 0) {
             return NextResponse.json({
                 success:false,
-                message: 'No record found...'
+                message: 'No record found!'
             },{status: 404})
         }
 
@@ -36,7 +36,7 @@ export const PUT = async(request, {params})=> {
     } catch (error) {
          return NextResponse.json({
             success: false,
-            message: "Failed to update fields..."
+            message: "Failed to update fields!"
         },{status: 500})
     }
    

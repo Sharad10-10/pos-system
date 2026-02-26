@@ -56,14 +56,7 @@ const Reports = () => {
                       <tr>
                         <td className='border-b-2 border-black/20 pb-2'>#{customerData?.id}</td>
                         <td className='border-b-2 border-black/20 pb-2'>{customerData?.customerName}</td>
-                        <td className='w-70 border-b-2 border-black/20 pb-2'>{customerData?.order?.map((customerOrder, index)=> {
-                          return (
-                              <span key={index}>
-                                {customerOrder}
-                                {index < customerOrder.length - 1 && ', '}
-                              </span>
-                          )
-                        })}</td>
+                        <td className='w-70 border-b-2 border-black/20 pb-2'>{customerData?.order.join(', ')}</td>
                         <td className='border-b-2 border-black/20 pb-2'>{customerData?.totalPrice}$</td>
                         <td className='border-b-2 border-black/20 pb-2'>{new Date(customerData?.createdAt).toLocaleString('en-CA', { month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit", hour12: true})}</td>
                         <td className='border-b-2 border-black/20 pb-2'><p className={`${customerData?.orderStatus === 'Ready' ? 'text-green-400' : 'text-red-400'}`}>{customerData?.orderStatus}</p></td>

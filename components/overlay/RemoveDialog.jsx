@@ -13,8 +13,9 @@ const RemoveDialog = ({setOpenDialog}) => {
                 const response = await fetch(`http://localhost:3000/api/users/${Number(employeeId)}`, {
                     method: 'DELETE'
                 })
+                const data = await response.json()
                
-                setShowText(true)    
+                setShowText(data?.message)    
             
         } catch (error) {
             console.log(error);
@@ -31,14 +32,14 @@ const RemoveDialog = ({setOpenDialog}) => {
                 <div className="flex justify-end"><button onClick={()=>setOpenDialog(false)} className="bg-red-500 text-white px-3 py-1 cursor-pointer hover:scale-105 duration-500 transition-all rounded-md">Close</button></div>
                 <h1>Enter employee id you want to remove?</h1>
                 <span className="text-sm text-red-600">Note: Do not type # </span>
-                <input onChange={(e)=> setEmployeeId(e.target.value)} type="text" className="outline-none border-2 border-black/30 rounded-md pl-2 py-1" placeholder="Enter employee id" name="employeeId" id="employeeId"/>
+                <input onChange={(e)=> setEmployeeId(e.target.value)} type="text" className="outline-none border-2 border-black/30 rounded-md pl-2 py-1" placeholder="Enter employee id" name="employeeId" id="employeeId" required/>
           </div>
           <div className="flex flex-col items-center pr-3 mt-4">
             <p onClick={handleSubmit} className="text-center px-6 py-1 rounded-md text-white cursor-pointer bg-red-500 hover:scale-105 transition-all duration-500">
               Delete
             </p>
 
-            {showText && <p className="mt-2 bg-red-500 rounded-md px-2 text-white">Employee Deleted Successfully!</p>}
+            {showText && <p className="mt-2 bg-red-500 rounded-md px-2 text-white mt-4">{showText}</p>}
           </div>
         </div>
       </div>

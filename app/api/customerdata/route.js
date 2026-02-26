@@ -16,14 +16,14 @@ export const POST = async(request, response)=> {
 
             return NextResponse.json({
             success: true,
-            message: "Data received successfully...",
+            message: "Customer data added successfully....",
             customerData    
    }, {status: 200})
 
     } catch (error) {
         return NextResponse.json({
             success: false,
-            message: 'Failed to add customer data',
+            message: 'Failed to add customer data!',
             error
         }, {status: 500})
     }
@@ -41,8 +41,8 @@ export const GET = async()=> {
     } catch (error) {
         return NextResponse.json({
             success: false,
-            message: 'Failed to get customer data...',
+            message: 'Failed to get customer data!',
             error
-        })
+        }, {status:501})
     }
 }

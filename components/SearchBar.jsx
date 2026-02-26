@@ -1,6 +1,7 @@
 import React from 'react'
 
 const SearchBar = () => {
+  
   return (
     <div>
         <div className='flex items-center px-12 gap-x-50'>

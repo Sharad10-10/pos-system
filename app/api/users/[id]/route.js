@@ -13,7 +13,7 @@ export const DELETE =   async (request, {params})=> {
             return NextResponse.json({
                 success: false,
                 message: 'Failed to delete! User does not exist'
-            })
+            }, {status: 404})
         }
 
         const deleteUser = await db.delete(userSchema).where(eq(userSchema.id, id))
@@ -21,19 +21,16 @@ export const DELETE =   async (request, {params})=> {
             success: true,
             message: 'User deleted successfully...',
             deletedUser: deleteUser
-        })
+        }, {status: 201})
 
 
     } catch (error) {
         return NextResponse.json({
             success: false,
-            message: 'Failed to delete user...',
+            message: 'Failed to delete user!',
             error
-        })
+        }, {status:501})
     }
 }
 
 
-export const PUT = ()=> {
-
-}

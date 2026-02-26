@@ -21,7 +21,6 @@ export const DELETE = async(request, {params})=>{
     return NextResponse.json({
         success: true,
         message: 'Product deleted successfully...',
-        deletedProduct: deleteProduct[0]
     }, {status: 201})
 
 
@@ -34,4 +33,10 @@ export const DELETE = async(request, {params})=>{
     }, {status: 501})
   }
 
+}
+
+
+
+export const PUT = async(request,response)=> {
+  
 }

@@ -1,7 +1,5 @@
 import AddProductButton from '@/components/inventory/AddProductButton'
 import DeleteProductButton from '@/components/inventory/DeleteProductButton'
-import Button from '@/components/overlay/Button'
-import RemoveButton from '@/components/overlay/RemoveButton'
 import React from 'react'
 
 const Inventory = async() => {
@@ -52,7 +50,7 @@ const Inventory = async() => {
                         <td>{productData?.productName}</td>
                         <td>{productData?.productType}</td>
                         <td>{productData?.quantity} {productData?.kg ? productData?.kg : productData?.units}</td>
-                        <td>{productData?.quantity > 10 ? 'In stock' : 'Low stock'}</td>
+                        <td>{productData?.quantity > 8 ? 'In stock' : 'Low stock'}</td>
                       </tr>
                     )
                    })}

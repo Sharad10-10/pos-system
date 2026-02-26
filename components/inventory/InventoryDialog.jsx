@@ -11,6 +11,7 @@ const InventoryDialog = ({setDialogOpen}) => {
         kg: '',
         units: ''
     })
+    const [showText, setShowText] = useState('')
 
     const handleInput = (e)=> {
         const {name, value} = e.target
@@ -36,7 +37,7 @@ const InventoryDialog = ({setDialogOpen}) => {
                 body:JSON.stringify(formData)
             })
             const data = await response.json()
-            console.log(data);
+            setShowText(data?.message)
 
         } catch (error) {
             console.log(error);
@@ -78,6 +79,8 @@ const InventoryDialog = ({setDialogOpen}) => {
                     </div>
                 </div>
             </form>
+
+            {showText && <div className='flex justify-center'><p className='text-md bg-red-500 px-4 py-1 max-w-60 rounded-md  mt-4 text-white'>{showText}</p></div>}
         </div>
       </div>
     </div>

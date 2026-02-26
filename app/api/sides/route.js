@@ -33,10 +33,17 @@ export const POST =async (request, response)=> {
 
 
 export const GET = async()=> {
-    const data = await db.select().from(sidesSchema)
-    return NextResponse.json({
-        success: true,
-        message: "Data retrieved successfully...",
-        data
-    },{status: 200}) 
+   try {
+        const data = await db.select().from(sidesSchema)
+            return NextResponse.json({
+                success: true,
+                message: "Data retrieved successfully...",
+                data
+            },{status: 200}) 
+   } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: 'Failed to get sides data!'
+        }, {status: 501})
+   }
 }

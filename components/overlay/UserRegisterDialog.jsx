@@ -8,6 +8,7 @@ const UserRegisterDialog = ({openDialog, closeDialog}) => {
         password: '',
         userRole: ''
     })
+    const [showText, setShowText] = useState(false)
 
     const handleInput = (e)=> {
         const {name, value} = e.target
@@ -28,7 +29,7 @@ const UserRegisterDialog = ({openDialog, closeDialog}) => {
                 body: JSON.stringify(formData)
             })
             const data = await response.json()
-            console.log(data);
+            setShowText(data?.message)
 
         } catch (error) {
             console.log(error);
@@ -74,10 +75,8 @@ const UserRegisterDialog = ({openDialog, closeDialog}) => {
                             </div>
                       </div>
                     </form>
+                    {showText && <div className="flex justify-center"><p className="bg-red-500 rounded-md px-4 py-1 text-md text-white mt-2">{showText}</p></div>}
                 </div>
-
-
-
           </div>
         </div>
     </div>}

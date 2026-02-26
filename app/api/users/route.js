@@ -7,14 +7,13 @@ import bcrypt from 'bcryptjs'
 export const POST = async(request, response)=> {
     const body = await request.json()
     const {userName, password, userRole} = body
-    console.log(body);
 
     try {
         if(!userName || !password || !userRole) {
             return NextResponse.json({
                 success: false,
                 message: 'Please provide all the required fields'
-            })
+            },{status: 400})
         }
 
             const existingUser = await db.select().from(userSchema).where(eq(userSchema.userName, userName))
@@ -23,7 +22,7 @@ export const POST = async(request, response)=> {
                     success: false,
                     message: 'User already exists',
                     existingUser : existingUser[0].userName
-                })
+                },{status: 400})
             }
 
             const hashedPassword = await bcrypt.hash(password, 10)
@@ -38,7 +37,7 @@ export const POST = async(request, response)=> {
                 success: true,
                 message: 'User registered successfully...',
                 user: user[0].userName
-            })
+            },{status: 201})
 
 
     } catch (error) {
@@ -63,14 +62,14 @@ export const GET = async(request)=> {
         success: true,
         message: 'Data retrieved successfully...',
         user
-       })
+       }, {status: 201})
         
         
     } catch (error) {
         return NextResponse.json({
             success: false,
-            message: 'Failed to get data...',
+            message: 'Failed to get data!',
             error
-        })
+        }, {status: 501})
     }
 }

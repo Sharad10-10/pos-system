@@ -4,7 +4,7 @@ const DeleteProductDialog = ({setOpenDialog}) => {
 
     const [productId, setProductId] = useState('')
 
-    const [showText, setShowText] = useState(false)
+    const [showText, setShowText] = useState('')
 
    
 
@@ -35,7 +35,7 @@ const DeleteProductDialog = ({setOpenDialog}) => {
                 <div className="flex justify-end"><button onClick={()=>setOpenDialog(false)} className="bg-red-500 text-white px-3 py-1 cursor-pointer hover:scale-105 duration-500 transition-all rounded-md">Close</button></div>
                 <h1>Enter product id you want to remove?</h1>
                 <span className="text-sm text-red-600">Note: Please do not enter # </span>
-                <input onChange={(e)=> setProductId(e.target.value)} type="text" className="outline-none border-2 border-black/30 rounded-md pl-2 py-1" placeholder="Enter product id" name="productId" id="productId"/>
+                <input onChange={(e)=> setProductId(e.target.value)} type="text" className="outline-none border-2 border-black/30 rounded-md pl-2 py-1" placeholder="Enter product id" name="productId" id="productId" required/>
           </div>
           <div className="flex flex-col items-center pr-3 mt-4">
             <p onClick={handleSubmit} className="text-center px-6 py-1 rounded-md text-white cursor-pointer bg-red-500 hover:scale-105 transition-all duration-500">

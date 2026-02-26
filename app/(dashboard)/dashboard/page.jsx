@@ -1,8 +1,21 @@
 import React from 'react'
 
-const Dashboard = () => { 
+const Dashboard = async() => { 
 
-  
+  const fetchCustomerData = async()=> {
+        try {
+          const response = await fetch('http://localhost:3000/api/customerdata')
+          const data = await response.json()
+          return data
+
+        } catch (error) {
+        console.log(error); 
+  }
+  }
+
+   const customerDataResult = await fetchCustomerData();
+      console.log(customerDataResult);
+
   return (
       <div className='pl-60 pt-30'>
         <div className='inline-flex items-center gap-20 pl-6'>
@@ -12,20 +25,25 @@ const Dashboard = () => {
               <span className='h-9 w-9 rounded-full bg-green-200 pt-1'>
                 <span className='pl-1.5'>💵</span>
               </span>
-              
+
             </div>
-            <p className='px-8 py-10 text-3xl font-bold'>$2,000</p>
+            <p className='px-8 py-10 text-3xl font-bold'>${customerDataResult?.customerData?.reduce((total, order)=> {
+              return (
+                  total + Number(order?.totalPrice)
+              )
+            }, 0)}</p>
           </div>
 
           <div className='w-100 h-44 bg-white rounded-lg shadow-xl'>
             <div className='flex items-center justify-between px-8 pt-8'>
-              <h1 className='text-xl font-semibold text-black/60'>Total Order</h1>
+              <h1 className='text-xl font-semibold text-black/60'>Total Orders</h1>
               <span className='h-9 w-9 rounded-full bg-green-200 pt-1'>
                 <span className='pl-1.5 text-lg'>📦</span>
               </span>
               
             </div>
-            <p className='px-8 py-10 text-3xl font-bold'>50</p>
+            <p className='px-8 py-10 text-3xl font-bold'>{customerDataResult?.customerData?.length || 0}
+           </p>
           </div>
         </div>
 
@@ -41,62 +59,29 @@ const Dashboard = () => {
                   <td>Order Id</td>
                   <td>Customer</td>
                   <td>Items</td>
-                  <td>Total</td>
+                  <td className='pl-8'>Total</td>
                   <td>Status</td>
                   <td>Time</td>
                 </tr>
             </thead>
 
             <tbody className=''>
-              <tr>
-                <td>#111</td>
-                <td>Sarah</td>
-                <td>2x Pepperoni, 1x Wings</td>
-                <td>$45.99</td>
-                <td>Preparing</td>
-                <td>2 min ago</td>
-              </tr>
+              {customerDataResult?.customerData?.map((customerData, index)=> {
+                return (
+                    <tr key={index}>
+                      <td>#{customerData?.id}</td>
+                      <td>{customerData?.customerName}</td>
+                      <td className='w-80'>{customerData?.order.join(', ')}</td>
+                      <td className='pl-8'>${customerData?.totalPrice}</td>
+                      <td>{customerData?.orderStatus}</td>
+                      <td>{new Date(customerData?.createdAt).toLocaleTimeString().slice(3)}</td>
+                    </tr>
+             
+                )
+              })}
+              
             </tbody>
-            <tbody>
-              <tr>
-                <td>#111</td>
-                <td>Sarah</td>
-                <td>2x Pepperoni, 1x Wings</td>
-                <td>$45.99</td>
-                <td>Preparing</td>
-                <td>2 min ago</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>#111</td>
-                <td>Sarah</td>
-                <td>2x Pepperoni, 1x Wings</td>
-                <td>$45.99</td>
-                <td>Preparing</td>
-                <td>2 min ago</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>#111</td>
-                <td>Sarah</td>
-                <td>2x Pepperoni, 1x Wings</td>
-                <td>$45.99</td>
-                <td>Preparing</td>
-                <td>2 min ago</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>#111</td>
-                <td>Sarah</td>
-                <td>2x Pepperoni, 1x Wings</td>
-                <td>$45.99</td>
-                <td>Preparing</td>
-                <td>2 min ago</td>
-              </tr>
-            </tbody>
+           
           </table>
           </div>
 
