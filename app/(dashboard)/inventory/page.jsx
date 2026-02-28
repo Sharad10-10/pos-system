@@ -7,7 +7,7 @@ const Inventory = async() => {
 
     const fetchInventoryData = async()=> {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/inventory`)
+            const response = await fetch(`${process.env.NEXTAUTH_URL}/api/inventory`)
             const data = response.json()
             return data
         } catch (error) {

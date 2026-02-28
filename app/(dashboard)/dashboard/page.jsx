@@ -4,7 +4,7 @@ const Dashboard = async() => {
 
   const fetchCustomerData = async()=> {
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/customerdata`)
+          const response = await fetch(`${process.env.NEXTAUTH_URL}/api/customerdata`)
           const data = await response.json()
           return data
 
