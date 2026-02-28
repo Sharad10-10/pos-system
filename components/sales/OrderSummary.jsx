@@ -41,14 +41,18 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
             })
         }
 
+        console.log(typeof(formData?.totalPrice));
+
         const handleSubmit = async(e)=> {
             e.preventDefault()
            
             const finalCustomerData = {
                 ...formData,
                 order: totalOrder,
-                totalPrice: total.toFixed(2),
+                totalPrice: Number(total).toFixed(2),
             }
+
+            
 
            try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/customerdata`,{
