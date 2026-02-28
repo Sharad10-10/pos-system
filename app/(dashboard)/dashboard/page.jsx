@@ -31,7 +31,7 @@ const Dashboard = async() => {
             </div>
             <p className='px-8 py-10 text-3xl font-bold'>${customerDataResult?.customerData?.reduce((total, order)=> {
               return (
-                  total + Number(order?.totalPrice)
+                  total + (Number(order?.totalPrice).toFixed(2))
               )
             }, 0)}</p>
           </div>
