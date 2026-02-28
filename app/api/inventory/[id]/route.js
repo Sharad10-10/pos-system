@@ -21,7 +21,7 @@ export const DELETE = async(request, {params})=>{
     return NextResponse.json({
         success: true,
         message: 'Product deleted successfully...',
-    }, {status: 201})
+    }, {status: 200})
 
 
 
@@ -30,7 +30,7 @@ export const DELETE = async(request, {params})=>{
         success: false,
         message: 'Failed to delete product!',
         error
-    }, {status: 501})
+    }, {status: 500})
   }
 
 }
@@ -51,7 +51,7 @@ try {
     return NextResponse.json({
       success: false,
       message: 'No product record found!'
-    })
+    },{status: 404})
   }
 
   const updateProduct = await db.update(inventorySchema).set({
@@ -66,7 +66,7 @@ try {
   return NextResponse.json({
     success: true,
     message: 'Product data updated successfully...',
-  })
+  },{status: 200})
 
 
 } catch (error) {

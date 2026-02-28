@@ -4,9 +4,6 @@ import React, { useState } from 'react'
 
 const InventoryDialog = ({setDialogOpen, headingName, editMode, id, productData}) => {
 
-    console.log("productData is", productData);
-
-    console.log("Edit mode", editMode);
     const [formData, setFormData]= useState({
         productId: productData?.productId || '',
         productName: productData?.productName ||'',
@@ -28,14 +25,13 @@ const InventoryDialog = ({setDialogOpen, headingName, editMode, id, productData}
        
     }
 
-     console.log(formData);
 
     const handleSubmit = async(e)=> {
         e.preventDefault()
 
         if(editMode){
              try {
-            const response = await fetch(`api/inventory/${id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/inventory/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -56,7 +52,7 @@ const InventoryDialog = ({setDialogOpen, headingName, editMode, id, productData}
 
     else {
          try {
-            const response = await fetch('api/inventory', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/inventory`, {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'

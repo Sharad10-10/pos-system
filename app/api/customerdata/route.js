@@ -5,8 +5,6 @@ import { NextResponse } from "next/server"
 
 export const POST = async(request, response)=> {
 
-   
-
     try {
         const {customerName, phoneNumber, order, totalPrice} = await request.json()
         const customerData = await db.insert(customerDataSchema).values({
@@ -20,7 +18,7 @@ export const POST = async(request, response)=> {
             success: true,
             message: "Customer data added successfully....",
             customerData    
-   }, {status: 200})
+   }, {status: 201})
 
     } catch (error) {
         return NextResponse.json({

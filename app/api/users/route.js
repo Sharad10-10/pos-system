@@ -62,7 +62,7 @@ export const GET = async(request)=> {
         success: true,
         message: 'Data retrieved successfully...',
         user
-       }, {status: 201})
+       }, {status: 200})
         
         
     } catch (error) {
@@ -70,6 +70,6 @@ export const GET = async(request)=> {
             success: false,
             message: 'Failed to get data!',
             error
-        }, {status: 501})
+        }, {status: 500})
     }
 }

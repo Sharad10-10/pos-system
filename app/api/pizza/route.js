@@ -25,7 +25,7 @@ export const POST =async (request, response)=> {
         success: false,
         message: 'Failed to add pizza!',
         error
-    }, {status: 501})
+    }, {status: 500})
  }
 
 
@@ -39,13 +39,13 @@ export const GET = async()=> {
                 success: true,
                 message: "Data retrieved successfully...",
                 data
-            }, {status: 201})
+            }, {status: 200})
 }
  catch (error) {
     return NextResponse.json({
         success: false,
         message: 'Failed to get pizza data!',
         error
-    }, {status: 501})        
+    }, {status: 500})        
    }
 }

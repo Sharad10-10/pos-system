@@ -12,7 +12,7 @@ export const POST = async(request, response) => {
             return NextResponse.json({
                 success: false,
                 message: 'Please fill all the required fields...'
-            }, {status : 401})
+            }, {status : 404})
         }
 
         const product = await db.insert(inventorySchema).values({
@@ -36,7 +36,7 @@ export const POST = async(request, response) => {
             success: false,
             message: 'Failed to add product',
             error
-        }, {status: 501})
+        }, {status: 500})
     }
 
 }
@@ -49,7 +49,7 @@ export const GET = async()=> {
                 success: true,
                 message: 'Product data retrieved successfully...',
                 product
-            }, {status: 201})
+            }, {status: 200})
 
 
     } catch (error) {
@@ -57,6 +57,6 @@ export const GET = async()=> {
             success: false,
             message: 'Failed to get product data...',
             error
-        }, {status: 501})
+        }, {status: 500})
     }
 }

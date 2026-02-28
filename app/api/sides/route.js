@@ -18,7 +18,7 @@ export const POST =async (request, response)=> {
         success: true,
         message: "Sides Added successfully...",
         sides: sides[0]
-    }, {status: 200})
+    }, {status: 201})
 
    } catch (error) {
          return NextResponse.json({
@@ -44,6 +44,6 @@ export const GET = async()=> {
         return NextResponse.json({
             success: false,
             message: 'Failed to get sides data!'
-        }, {status: 501})
+        }, {status: 500})
    }
 }

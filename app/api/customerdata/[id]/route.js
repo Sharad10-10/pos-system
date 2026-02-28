@@ -31,7 +31,7 @@ export const PUT = async(request, {params})=> {
             success: true,
             message: "Fields updated...",
             updateCostumerData
-        },{status: 201})
+        },{status: 200})
 
     } catch (error) {
          return NextResponse.json({
@@ -63,7 +63,7 @@ export const GET = async(request, {params})=> {
             success: true,
             message: 'Customer data retrieved successfully...',
             customerData
-        }, {status: 201})
+        }, {status: 200})
 
 
 
@@ -72,7 +72,7 @@ export const GET = async(request, {params})=> {
             success: false,
             message: 'Failed to get customer data!',
             error
-        }, {status: 501})
+        }, {status: 500})
     }
 
 }

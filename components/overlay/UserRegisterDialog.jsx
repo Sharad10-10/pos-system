@@ -23,7 +23,7 @@ const UserRegisterDialog = ({openDialog, closeDialog}) => {
     const handleSubmit = async(e)=> {
         e.preventDefault()
         try {
-            const response = await fetch('/api/users', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'

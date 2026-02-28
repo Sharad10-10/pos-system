@@ -11,11 +11,7 @@ const MenuTabs = ({result, sidesResult, drinksResult}) => {
       const [toggleMenu, setToggleMenu] = useState('Pizza')
       const handleMenuClick = (e)=> {
           setToggleMenu(e.target.innerText)
-          console.log(e.target.innerText);
       }
-
-      console.log(sidesResult);
-
 
   return (
     <div>

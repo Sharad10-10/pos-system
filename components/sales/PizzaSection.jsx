@@ -7,7 +7,7 @@ const PizzaSection =({addItemToOrder}) => {
     const [pizzaData, setPizzaData] = useState([])
 
     const fetchPizzaData = async()=> {
-        const response = await fetch('http://localhost:3000/api/pizza')
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pizza`)
         const {data} = await response?.json()
         setPizzaData(data)
     }

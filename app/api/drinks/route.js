@@ -17,7 +17,7 @@ export const POST =async (request, response)=> {
         success: true,
         message: "Drinks Added successfully...",
         pizza: drinks[0]
-    }, {status: 200})
+    }, {status: 201})
 
    } catch (error) {
         return NextResponse.json({
@@ -36,7 +36,8 @@ export const GET = async()=> {
             success: true,
             message: "Data retrieved successfully...",
             data
-        })
+        },{status: 200})
+
     } catch (error) {
         return NextResponse.json({
             success: false,

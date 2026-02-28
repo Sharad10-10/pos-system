@@ -21,7 +21,7 @@ export const DELETE =   async (request, {params})=> {
             success: true,
             message: 'User deleted successfully...',
             deletedUser: deleteUser
-        }, {status: 201})
+        }, {status: 200})
 
 
     } catch (error) {
@@ -29,7 +29,7 @@ export const DELETE =   async (request, {params})=> {
             success: false,
             message: 'Failed to delete user!',
             error
-        }, {status:501})
+        }, {status:500})
     }
 }
 

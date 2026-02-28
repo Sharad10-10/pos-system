@@ -7,7 +7,7 @@ const SidesSection = ({addItemToOrder}) => {
   const [sidesData, setSidesData] = useState([]) 
   const fetchSidesData = async ()=>{
     try {
-        const response = await fetch('http://localhost:3000/api/sides')
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sides`)
         const data = await response?.json()
         setSidesData(data)
         console.log(data);
@@ -25,11 +25,11 @@ const SidesSection = ({addItemToOrder}) => {
 
 
   return (
-    <div className='pt-8 flex gap-12 flex-wrap h-screen'>
+    <div className='pt-8 flex gap-x-12 gap-y-4 flex-wrap h-screen'>
          {sidesData?.data?.map((sidesData, index)=> {
           return (
                <div  key={index} className='max-w-50'>
-                    <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/pepperoni.jpg' width={300} height={300} alt='pepperoni'></Image></div>
+                    <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/hawaiin.jpg' width={300} height={300} alt='pepperoni'></Image></div>
                     <h1 className='text-xl font-medium pt-1'>{sidesData?.sidesName}</h1>
                     <div className='pt-4 flex flex-col gap-2'>
                         {sidesData?.smallPrice ? <span onClick={()=> addItemToOrder({name: sidesData?.sidesName, price: sidesData?.smallPrice, size: sidesData?.sidesName == 'Boneless Wings' || sidesData?.sidesName == 'Traditional Wings' ? 'Small (pcs)' : 'Small' })} className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Small{sidesData?.sidesName === 'Boneless wings' || sidesData?.sidesName === 'Traditional Wings' ? ' (8pcs)': ''}: {sidesData?.smallPrice}$</span> : ''}

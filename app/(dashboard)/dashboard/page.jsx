@@ -4,7 +4,7 @@ const Dashboard = async() => {
 
   const fetchCustomerData = async()=> {
         try {
-          const response = await fetch('http://localhost:3000/api/customerdata')
+          const response = await fetch(`${process.env.BASE_URL}/api/customerdata`)
           const data = await response.json()
           return data
 

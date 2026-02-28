@@ -15,7 +15,7 @@ const Reports = async({searchParams}) => {
     
 try {
       
-    const response = await fetch(`http://localhost:3000/api/customerdata/${q}`,
+    const response = await fetch(`${process.env.BASE_URL}/api/customerdata/${q}`,
           {
             cache: 'no-store'
           }

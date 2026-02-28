@@ -11,10 +11,6 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
             useEffect(()=> {
                setOrderNumber(Math.floor(Math.random()*(200 - 100 )) + 100)
             }, [])
-
-            console.log(orderNumber);
-
-
         
             const triggerOverlay = ()=> {
                 setShowOverlay(true)
@@ -24,7 +20,6 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
         const subtotal = orderItems.reduce((sum, item) => sum + Number(item.price), 0);
         const tax = (Number(subtotal * 0.05));
         const total = Number(subtotal + tax);
-
 
 
       const totalOrder =  orderItems.map((orderItem, index)=> {
@@ -56,7 +51,7 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
             }
 
            try {
-                const response = await fetch('http://localhost:3000/api/customerdata',{
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/customerdata`,{
                     method: 'POST',
                     headers: {
                         'Content-Type' : 'application/json'
@@ -66,8 +61,7 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
         
             
                 const data = await response.json()
-                console.log(data);
-
+            
                 setFormData({
                     customerName: 'Pickup',
                     phoneNumber: '',
@@ -90,11 +84,6 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
             )
         }
 
-
-
-   
-
-   
 
   return (
     <div className='max-h-400 border mb-4'>

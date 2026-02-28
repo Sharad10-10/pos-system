@@ -15,7 +15,7 @@ const RemoveDialog = ({setOpenDialog}) => {
     const handleSubmit = async(e)=> {
         e.preventDefault()
          try {
-                const response = await fetch(`http://localhost:3000/api/users/${Number(employeeId)}`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${Number(employeeId)}`, {
                     method: 'DELETE'
                 })
                 const data = await response.json()

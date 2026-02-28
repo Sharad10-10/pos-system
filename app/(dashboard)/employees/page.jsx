@@ -6,7 +6,7 @@ const Employees = async() => {
 
     const fetchUserData = async()=> {
         try {
-            const response = await fetch('http://localhost:3000/api/users')
+            const response = await fetch(`${process.env.BASE_URL}/api/users`)
             const data = response.json()
             return data
         } catch (error) {
