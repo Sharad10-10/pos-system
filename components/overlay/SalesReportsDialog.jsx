@@ -1,8 +1,9 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
-const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder, fetchCustomerData}) => {
-    console.log(selectedOrder, "selectedd");
+const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder}) => {
+   
     const [formData, setFormData] = useState({
         cash: '',
         credit: '',
@@ -11,6 +12,7 @@ const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder, fetchCus
         paymentStatus: selectedOrder?.paymentStatus || 'Not Paid'
     })
 
+    const router = useRouter()
     
     const handleInput = (e)=> {
         const {name, value} = e.target
@@ -35,12 +37,17 @@ const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder, fetchCus
                 }
             )
             const data = await response.json()
+            
+            if(data?.success) {
+                router.refresh()
+            }
+          
            
         } catch (error) {
             console.log(error);
         }
         closeDialog()
-        fetchCustomerData()  
+       
     }
 
   return (
@@ -61,14 +68,7 @@ const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder, fetchCus
                 <h1>Order Number: {selectedOrder?.id}</h1>
                 <h1>Customer Name: {selectedOrder?.customerName}</h1>
                 <h1>Phone Number: {selectedOrder?.phoneNumber}</h1>
-                <h1>Order Summary: {selectedOrder?.order?.map((selectedOrder, index)=> {
-                    return (
-                        <span key={index}>
-                            {selectedOrder}
-                            {index < selectedOrder.length - 1 && ', '}
-                        </span>
-                    )
-                })}</h1>
+                <h1>Order Summary: {selectedOrder?.order?.join(', ')}</h1>
                 <h1>Total: {selectedOrder?.totalPrice}$</h1>
             </div>
            

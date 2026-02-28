@@ -1,3 +1,5 @@
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const RemoveDialog = ({setOpenDialog}) => {
@@ -5,7 +7,10 @@ const RemoveDialog = ({setOpenDialog}) => {
     const [employeeId, setEmployeeId] = useState('')
 
     const [showText, setShowText] = useState(false)
- 
+    const router= useRouter()
+    const session = useSession()
+
+    console.log("session is", session);
 
     const handleSubmit = async(e)=> {
         e.preventDefault()
@@ -16,6 +21,10 @@ const RemoveDialog = ({setOpenDialog}) => {
                 const data = await response.json()
                
                 setShowText(data?.message)    
+
+                 if(data?.success) {
+                  router.refresh()
+            }
             
         } catch (error) {
             console.log(error);
@@ -39,7 +48,7 @@ const RemoveDialog = ({setOpenDialog}) => {
               Delete
             </p>
 
-            {showText && <p className="mt-2 bg-red-500 rounded-md px-2 text-white mt-4">{showText}</p>}
+            {showText && <p className="bg-red-500 rounded-md px-2 text-white mt-4">{showText}</p>}
           </div>
         </div>
       </div>

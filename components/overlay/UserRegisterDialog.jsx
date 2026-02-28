@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const UserRegisterDialog = ({openDialog, closeDialog}) => {
@@ -9,6 +10,7 @@ const UserRegisterDialog = ({openDialog, closeDialog}) => {
         userRole: ''
     })
     const [showText, setShowText] = useState(false)
+    const router = useRouter()
 
     const handleInput = (e)=> {
         const {name, value} = e.target
@@ -30,6 +32,10 @@ const UserRegisterDialog = ({openDialog, closeDialog}) => {
             })
             const data = await response.json()
             setShowText(data?.message)
+            
+            if(data?.success) {
+                router.refresh()
+            }
 
         } catch (error) {
             console.log(error);

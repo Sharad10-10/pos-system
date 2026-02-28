@@ -22,7 +22,7 @@ const DrinksSection = ({addItemToOrder}) => {
 
 
   return (
-    <div className='pt-8 flex gap-12 h-screen'>
+    <div className='pt-8 flex gap-12 h-screen flex-wrap'>
      {drinksData?.data?.map((drinksData, index)=> {
       return (
             <div key={index} className='w-40'>

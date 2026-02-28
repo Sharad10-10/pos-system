@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const AddDrinksForm = () => {
@@ -9,6 +10,10 @@ const AddDrinksForm = () => {
         smallPrice:'',
         largePrice: ''
     })
+
+        const [showText, setShowText] = useState()
+    
+        const router = useRouter()
 
     const handleInput = (e)=> {
         const {name, value} = e.target
@@ -31,13 +36,18 @@ const AddDrinksForm = () => {
             })
     
             const data = await response.json()
-            console.log('Data is: ', data);
+            setShowText(data?.message)
+            
             setFormData({
             drinksName: '',
             imageUrl: '',
             smallPrice:'',
             largePrice: ''
             })
+
+            if(data?.success){
+                router.refresh()
+            }
         }
 
 
@@ -57,6 +67,7 @@ const AddDrinksForm = () => {
                     <button className='px-6 py-2 bg-[#EB675A] text-white rounded-lg cursor-pointer hover:scale-105 duration 500 transition-all'>Add New Drink</button>
                 </div>
             </form>
+            {showText && <div className="flex mt-2"><p className="bg-red-500 rounded-md px-4 py-1 text-md text-white mt-2">{showText}</p></div>}
         </div>
     </div>
   )

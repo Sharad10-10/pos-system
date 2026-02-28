@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const AddPizzaForm = () => {
@@ -10,6 +11,9 @@ const AddPizzaForm = () => {
         mediumPrice: '',
         largePrice: ''
     })
+    const [showText, setShowText] = useState()
+
+    const router = useRouter()
 
     const handleInput = (e)=> {
         const {name, value} = e.target
@@ -32,7 +36,9 @@ const AddPizzaForm = () => {
             })
     
             const data = await response.json()
-            console.log('Data is: ', data);
+            setShowText(data?.message)
+
+             
             setFormData({
             pizzaName: '',
             imageUrl: '',
@@ -40,6 +46,13 @@ const AddPizzaForm = () => {
             mediumPrice: '',
             largePrice: ''
             })
+
+             if(data?.success) {
+                router.refresh()
+            }
+            
+          
+            
         }
 
 
@@ -48,7 +61,7 @@ const AddPizzaForm = () => {
         <div>
                         <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
                             <label htmlFor="">Name</label>
-                            <input onChange={handleInput} value={formData.pizzaName} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter pizza name' name='pizzaName' id='pizza'  />
+                            <input onChange={handleInput} value={formData.pizzaName} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter pizza name' name='pizzaName' id='pizza' />
                             <label htmlFor="">Image</label>
                             <input onChange={handleInput} value={formData.imageUrl} className='outline-none border-2 border-black/30 p-1 max-w-60 rounded-md' type="text" placeholder='Enter Image' name='imageUrl' id='image' />
                             <label htmlFor="">Small</label>
@@ -63,6 +76,7 @@ const AddPizzaForm = () => {
                             </div>
         
                         </form>
+                       {showText && <div className="flex mt-2"><p className="bg-red-500 rounded-md px-4 py-1 text-md text-white mt-2">{showText}</p></div>}
                     </div>
     </div>
   )

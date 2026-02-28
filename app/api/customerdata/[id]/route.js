@@ -1,6 +1,6 @@
 import { db } from "@/db/dbConfig"
 import { customerDataSchema } from "@/db/schema"
-import { eq } from "drizzle-orm";
+import { eq, ilike, like } from "drizzle-orm";
 import { NextResponse } from "next/server"
 
 export const PUT = async(request, {params})=> {
@@ -40,4 +40,39 @@ export const PUT = async(request, {params})=> {
         },{status: 500})
     }
    
+}
+
+
+
+export const GET = async(request, {params})=> {
+
+    const {id} = await params
+    console.log(id);
+
+    try {
+        
+        const customerData = await db.select().from(customerDataSchema).where(ilike(customerDataSchema.customerName, `%${id}%`))
+        if(customerData.length === 0) {
+            return NextResponse.json({
+                success: false,
+                message: 'Search record not found!'
+            },{status: 404})
+        }
+
+        return NextResponse.json({
+            success: true,
+            message: 'Customer data retrieved successfully...',
+            customerData
+        }, {status: 201})
+
+
+
+    } catch (error) {
+        return NextResponse.json({
+            success: false,
+            message: 'Failed to get customer data!',
+            error
+        }, {status: 501})
+    }
+
 }

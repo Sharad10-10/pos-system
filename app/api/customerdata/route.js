@@ -5,6 +5,8 @@ import { NextResponse } from "next/server"
 
 export const POST = async(request, response)=> {
 
+   
+
     try {
         const {customerName, phoneNumber, order, totalPrice} = await request.json()
         const customerData = await db.insert(customerDataSchema).values({
@@ -30,7 +32,7 @@ export const POST = async(request, response)=> {
 }
 
 
-export const GET = async()=> {
+export const GET = async(request)=> {
     try {
         const customerData = await db.select().from(customerDataSchema).orderBy(asc(customerDataSchema.id))
         return NextResponse.json({
@@ -43,6 +45,6 @@ export const GET = async()=> {
             success: false,
             message: 'Failed to get customer data!',
             error
-        }, {status:501})
+        }, {status:500})
     }
 }

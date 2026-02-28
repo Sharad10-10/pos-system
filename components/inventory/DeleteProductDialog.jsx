@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const DeleteProductDialog = ({setOpenDialog}) => {
@@ -5,6 +6,7 @@ const DeleteProductDialog = ({setOpenDialog}) => {
     const [productId, setProductId] = useState('')
 
     const [showText, setShowText] = useState('')
+    const router = useRouter()
 
    
 
@@ -19,6 +21,10 @@ const DeleteProductDialog = ({setOpenDialog}) => {
                 console.log(data);
                
                setShowText(data?.message)
+
+                if(data?.success) {
+                router.refresh()
+            }
             
         } catch (error) {
             console.log(error);

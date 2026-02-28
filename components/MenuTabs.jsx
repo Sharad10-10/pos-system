@@ -36,9 +36,10 @@ const MenuTabs = ({result, sidesResult, drinksResult}) => {
                 {toggleMenu == 'Pizza' ? 
                  <div className='pt-8 flex gap-x-12 gap-y-4 flex-wrap'>
                     {result?.map((result,index)=> {
+                        console.log("consoled result", result);
                         return (
                              <div key={index}>
-                                <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src='/pepperoni.jpg' width={300} height={300} alt='pepperoni'></Image></div>
+                                <div className='max-h-40 max-w-40 w-full rounded-lg overflow-hidden'><Image src={`/${result?.imageUrl}.jpg` || '/chicken_lovers.jpg'} width={300} height={300} alt='pepperoni'></Image></div>
                                     <h1 className='text-xl font-medium pt-1'>{result?.pizzaName}</h1>
                                     <div className='pt-4 flex flex-col gap-2'>
                                     <span  className='px-3 py-1 text-sm font-semibold border-2 border-[#EB675A] rounded-xl hover:bg-[#E74C3C] cursor-pointer hover:scale-105 transition-all duration-500'>Small: {result?.smallPrice}$</span>

@@ -37,6 +37,45 @@ export const DELETE = async(request, {params})=>{
 
 
 
-export const PUT = async(request,response)=> {
+export const PUT = async(request,{params})=> {
   
+  const {id} = await params
+ 
+const {productId, productName, productType, quantity, kg, units} = await request.json()
+
+try {
+
+  const product = await db.select().from(inventorySchema).where(eq(inventorySchema.id, id))
+  console.log(product);
+  if(product === 0){
+    return NextResponse.json({
+      success: false,
+      message: 'No product record found!'
+    })
+  }
+
+  const updateProduct = await db.update(inventorySchema).set({
+    productId,
+    productName,
+    productType,
+    quantity,
+    kg,
+    units
+  }).where(eq(inventorySchema.id, id))
+
+  return NextResponse.json({
+    success: true,
+    message: 'Product data updated successfully...',
+  })
+
+
+} catch (error) {
+  return NextResponse.json({
+    success: false,
+    message: 'Failed to edit product data!',
+    error
+  }, {status: 500})
+}
+  
+
 }

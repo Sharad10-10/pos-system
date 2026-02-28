@@ -47,7 +47,7 @@ const Dashboard = async() => {
           </div>
         </div>
 
-        <div className='w-300 mt-10 ml-6 shadow-2xl p-8 rounded-lg'>
+        <div className='w-300 mt-10 ml-6 shadow-2xl p-8 rounded-lg mb-4'>
           <div>
             <h1 className='text-xl font-bold'>Recent Orders</h1>
           </div>
@@ -65,7 +65,7 @@ const Dashboard = async() => {
                 </tr>
             </thead>
 
-            <tbody className=''>
+            <tbody>
               {customerDataResult?.customerData?.map((customerData, index)=> {
                 return (
                     <tr key={index}>
@@ -76,7 +76,6 @@ const Dashboard = async() => {
                       <td>{customerData?.orderStatus}</td>
                       <td>{new Date(customerData?.createdAt).toLocaleTimeString().slice(3)}</td>
                     </tr>
-             
                 )
               })}
               

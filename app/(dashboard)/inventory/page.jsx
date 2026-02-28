@@ -1,5 +1,6 @@
 import AddProductButton from '@/components/inventory/AddProductButton'
 import DeleteProductButton from '@/components/inventory/DeleteProductButton'
+import EditProductButton from '@/components/inventory/EditProductButton'
 import React from 'react'
 
 const Inventory = async() => {
@@ -26,6 +27,7 @@ const Inventory = async() => {
                 <div className='flex gap-3'>
                     <AddProductButton />
                     <DeleteProductButton />
+                    
                 </div>
            </div>
 
@@ -51,6 +53,7 @@ const Inventory = async() => {
                         <td>{productData?.productType}</td>
                         <td>{productData?.quantity} {productData?.kg ? productData?.kg : productData?.units}</td>
                         <td>{productData?.quantity > 8 ? 'In stock' : 'Low stock'}</td>
+                        <td><EditProductButton id={productData?.id} productData={productData}/></td>
                       </tr>
                     )
                    })}

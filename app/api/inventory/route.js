@@ -1,5 +1,6 @@
 import { db } from "@/db/dbConfig"
 import { inventorySchema } from "@/db/schema"
+import { asc } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export const POST = async(request, response) => {
@@ -43,7 +44,7 @@ export const POST = async(request, response) => {
 
 export const GET = async()=> {
     try {
-            const product = await db.select().from(inventorySchema)
+            const product = await db.select().from(inventorySchema).orderBy(asc(inventorySchema.productId))
             return NextResponse.json({
                 success: true,
                 message: 'Product data retrieved successfully...',

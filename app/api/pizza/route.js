@@ -15,6 +15,7 @@ export const POST =async (request, response)=> {
         }).returning()
 
         return NextResponse.json({
+            success: true,
             message: "Pizza Added successfully...",
             pizza: pizza[0]
         },{status: 201})
