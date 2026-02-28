@@ -6,7 +6,9 @@ const Employees = async() => {
 
     const fetchUserData = async()=> {
         try {
-            const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users`)
+            const response = await fetch(`${process.env.BASE_URL}/api/users`, {
+                cache: 'no-store'
+            })
             const data = response.json()
             return data
         } catch (error) {

@@ -6,7 +6,9 @@ const MenuManagement = async() => {
 
     const fetchPizzaData = async()=>{
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pizza`)
+            const response = await fetch(`${process.env.BASE_URL}/api/pizza`, {
+                cache: 'no-store'
+            })
             return response.json()
         } catch (error) {
             console.log(error);
