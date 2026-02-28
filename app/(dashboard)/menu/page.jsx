@@ -6,7 +6,7 @@ const MenuManagement = async() => {
 
     const fetchPizzaData = async()=>{
         try {
-            const response = await fetch(`${process.env.BASE_URL}/api/pizza`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pizza`)
             return response.json()
         } catch (error) {
             console.log(error);
@@ -19,7 +19,7 @@ const MenuManagement = async() => {
 
     const fetchSidesData = async()=> {
        try {
-             const response = await fetch(`${process.env.BASE_URL}/api/sides`)
+             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sides`)
              return await response?.json()
        } catch (error) {
             console.log(error);
@@ -32,7 +32,7 @@ const MenuManagement = async() => {
 
      const fetchDrinksData = async()=> {
        try {
-             const response = await fetch(`${process.env.BASE_URL}/api/drinks`)
+             const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/drinks`)
              return await response?.json()
        } catch (error) {
             console.log(error);
@@ -40,12 +40,6 @@ const MenuManagement = async() => {
     }
 
     const drinksResult = await fetchDrinksData()
-    console.log("Sides result:", drinksResult);
-
-
-    
-    
-
 
   return (
     <div className='pt-30 pl-60 w-378 pb-20'>
