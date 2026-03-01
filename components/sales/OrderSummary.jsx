@@ -41,8 +41,7 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
             })
         }
 
-        console.log(typeof(formData?.totalPrice));
-
+    
         const handleSubmit = async(e)=> {
             e.preventDefault()
            

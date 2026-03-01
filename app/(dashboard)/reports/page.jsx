@@ -7,9 +7,6 @@ const Reports = async({searchParams}) => {
   
   const params = await searchParams
   const q = params?.q || ''
-  console.log("q is: ", q);
-
- 
 
   const fetchCustomerData = async()=> {
     

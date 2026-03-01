@@ -58,8 +58,8 @@ const SalesReportsDialog = ({closeDialog, displayDialog, selectedOrder}) => {
             <h1>View</h1>
         </div>
 
-        <div>
-            <p onClick={closeDialog} className='fixed right-70 top-14 px-3 py-1 rounded-md text-white cursor-pointer bg-red-500 hover:scale-105 transition-all duration-500'>Close</p>
+        <div className='flex justify-end pr-4'>
+            <p onClick={closeDialog} className='px-3 py-1 rounded-md text-white cursor-pointer bg-red-500 hover:scale-105 transition-all duration-500'>Close</p>
         </div>
 
         

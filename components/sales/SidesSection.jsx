@@ -9,9 +9,7 @@ const SidesSection = ({addItemToOrder}) => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/sides`)
         const data = await response?.json()
-        setSidesData(data)
-        console.log(data);
-        
+        setSidesData(data)   
     } catch (error) {
         console.log(error);
     }

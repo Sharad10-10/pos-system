@@ -18,8 +18,6 @@ const DeleteProductDialog = ({setOpenDialog}) => {
                 })
 
                 const data = await response.json()
-                console.log(data);
-               
                setShowText(data?.message)
 
                 if(data?.success) {

@@ -21,11 +21,6 @@ const Sales = () => {
        item]
       )
     }
-
-    console.log(orderItems);
-
-
- 
  
   return (
    <div className='bg-[#F5F5F5] w-329 grid grid-cols-[35%_65%] ml-51 mt-18 pt-4'>

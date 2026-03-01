@@ -16,7 +16,6 @@ const Dashboard = async() => {
   }
 
    const customerDataResult = await fetchCustomerData();
-      console.log(customerDataResult);
 
   return (
       <div className='pl-60 pt-30'>

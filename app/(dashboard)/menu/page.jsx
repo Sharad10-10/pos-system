@@ -16,7 +16,6 @@ const MenuManagement = async() => {
     }
 
     const result = await fetchPizzaData()
-    console.log(result);
 
 
     const fetchSidesData = async()=> {
@@ -29,7 +28,6 @@ const MenuManagement = async() => {
     }
 
     const sidesResult = await fetchSidesData()
-    console.log("Sides result:", sidesResult);
 
 
      const fetchDrinksData = async()=> {
