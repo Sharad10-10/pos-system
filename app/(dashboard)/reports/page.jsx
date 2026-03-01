@@ -31,7 +31,8 @@ try {
 
 
   return (
-    <div className='pt-30 pl-58 pr-5 w-380'>
+   
+         <div className='pt-30 pl-58  pr-5 w-372'>
         <div className='w-full'>
 
           <SearchBar />
@@ -39,8 +40,9 @@ try {
             <ReportsTable customerDataResult={customerDataResult} />
           
                
-        </div>
+       
     </div>
+   </div>
   )
 }
 
