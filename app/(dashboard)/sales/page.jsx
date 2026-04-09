@@ -23,13 +23,13 @@ const Sales = () => {
     }
  
   return (
-   <div className='bg-[#F5F5F5] w-329 grid grid-cols-[35%_65%] ml-51 mt-18 pt-4'>
+   <div className='flex ml-48 mt-18 pt-4'>
 
-     <div className='shadow-2xl pl-4'>
+     <div className='pl-4 ml-2'>
       <OrderSummary orderItems = {orderItems} setOrderItems= {setOrderItems}/>
      </div>
      
-     <div className='pl-6 shadow-2xl'>
+     <div className='pl-6'>
       <div className='flex items-center gap-3'>
         <p className='text-2xl rounded-xl border-2 border-[#EA5E50] px-4 py-1 hover:bg-[#E74C3C] cursor-pointer' onClick={handleMenuClick}>Pizza</p>
         <p className='text-2xl rounded-xl border-2 border-[#EA5E50] px-4 py-1 hover:bg-[#E74C3C] cursor-pointer' onClick={handleMenuClick}>Sides</p>

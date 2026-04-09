@@ -18,7 +18,7 @@ const PizzaSection =({addItemToOrder}) => {
 
 
   return (
-    <div className='pt-8 flex gap-x-12 gap-y-4 flex-wrap'>
+    <div className='pt-8 flex gap-x-12 gap-y-4 flex-wrap w-212'>
       {pizzaData.map((pizzaData, index)=> { 
            return (
                <div key={index}>

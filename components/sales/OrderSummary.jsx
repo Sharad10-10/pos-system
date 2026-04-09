@@ -51,8 +51,7 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
                 totalPrice: Number(total).toFixed(2),
             }
 
-            
-
+           
            try {
                 const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/customerdata`,{
                     method: 'POST',
@@ -63,8 +62,14 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
                 })
         
             
-                const data = await response.json()
+                const data = await response?.json()
+
+                if (data?.success){
+                    triggerOverlay()
+                }
             
+            
+               
                 setFormData({
                     customerName: 'Pickup',
                     phoneNumber: '',
@@ -73,7 +78,6 @@ const OrderSummary = ({orderItems, setOrderItems}) => {
                 })
                 setOrderItems([])
              
-
            } catch (error) {
             console.log(error);
            }  

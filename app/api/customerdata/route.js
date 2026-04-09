@@ -7,6 +7,15 @@ export const POST = async(request, response)=> {
 
     try {
         const {customerName, phoneNumber, order, totalPrice} = await request.json()
+
+        if(!order || !totalPrice || order.length == 0 || totalPrice == 0) {
+            return NextResponse.json({
+                success: false,
+                message: 'Please provide all necessary fields!'
+            }, {status: 404})
+        }
+
+
         const customerData = await db.insert(customerDataSchema).values({
             customerName,
             phoneNumber,

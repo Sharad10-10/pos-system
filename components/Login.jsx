@@ -48,6 +48,13 @@ const Login = () => {
             <p className='text-center text-2xl font-medium'>Login</p>
         </div>
 
+        <div>
+          <p>Please use below given credentials to login.</p>
+          <p>UserName: user</p>
+          <p>Password: user123</p>
+
+        </div>
+
         <div className='max-w-80 w-full'>
             <form className='flex flex-col gap-3 justify-center' onSubmit={handleSubmit}>
                <div className='flex flex-col gap-1'>
